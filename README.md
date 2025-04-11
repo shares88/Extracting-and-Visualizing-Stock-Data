@@ -41,13 +41,13 @@ for row in rows[1:]:
 df_tesla_revenue = pd.DataFrame(tesla_revenue, columns=["Date", "Revenue"])
 df_tesla_revenue.head()
 ```
-## Extract the table with Tesla revenue
+### Extract the table with Tesla revenue
 ```tables = soup.find_all('table')
 for index, table in enumerate(tables):
     print(f"Table {index}")
     print(table.prettify()[:1000])
 ```
-## Convert the revenue table to a DataFrame
+### Convert the revenue table to a DataFrame
 ```for table in tables:
     if "Tesla Quarterly Revenue" in str(table):
         tesla_revenue = pd.read_html(str(table))[0]
@@ -60,14 +60,14 @@ tesla_revenue['Revenue'] = tesla_revenue['Revenue'].str.replace(r'\$', '', regex
 tesla_revenue['Revenue'] = pd.to_numeric(tesla_revenue['Revenue'])
 tesla_revenue.head()
 ```
-# Question 3: Use yfinance to Extract GameStop Stock Data
+## Question 3: Use yfinance to Extract GameStop Stock Data
 Extract historical market data for GameStop (ticker symbol: GME) using the same method.
 ```gme = yf.Ticker("GME")
 gme_data = gme.history(period="max")
 gme_data.reset_index(inplace=True)
 gme_data.head()
 ```
-# Question 4: Use Webscraping to Extract GME Revenue Data
+## Question 4: Use Webscraping to Extract GME Revenue Data
 Scrape GameStop revenue data from the given URL.
 ```url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0220EN-SkillsNetwork/labs/project/stock.htm"
 html_data = requests.get(url).text
@@ -87,7 +87,7 @@ gme_revenue['Revenue'] = gme_revenue['Revenue'].str.replace(r'\$', '', regex=Tru
 gme_revenue['Revenue'] = pd.to_numeric(gme_revenue['Revenue'])
 gme_revenue.head()
 ```
-# Question 5: Plot Tesla Stock Graph
+## Question 5: Plot Tesla Stock Graph
 
 ### Historical Share Price Graph
 ```import matplotlib.pyplot as plt
@@ -123,7 +123,7 @@ plt.ylabel("Revenue (USD)")
 plt.grid(True)
 plt.show()
 ```
-# Question 6: Plot GameStop Stock Graph
+## Question 6: Plot GameStop Stock Graph
 make_graph(gme_data, gme_revenue, 'GameStop', color='tab:green')
 
 ### Historical Share Price Graph
